@@ -21,16 +21,22 @@ table, th, td {
         <tbody>
             <?php
                 $con = new mysqli("localhost","root", "", "jemeppe");
-                echo $_POST['kamers'];
+                
                 if(isset($_POST['submit'])){
-                    if(!empty($_POST['kamers'])){
+                    if(!empty($_POST['kamers'])) {
                         $selected = $_POST['kamers'];
-                        
+                    } else {
+                        echo 'Please select the value.'; // fix needed set to first room in array
                     }
-                    
-                    }else {
-                        $selected = "De Geheime Kamer";
+                } else $selected = "De Rode Kamer";
+                echo "<form action='' method='post'><label> kies uw kamer hier </label><select name='kamers'>";
+                $GetRows = $con->query("SELECT Naam FROM kamers");
+                while ($row = mysqli_fetch_assoc($GetRows)){
+                    echo "<option value='" . implode($row) . "' "  .  ">" . implode($row) . "</option>";
+                    echo  "<br><br>\n";
                 }
+                echo '</select><input type="submit"  name="submit"></form>';
+                
 
                 $execItems = $con->query("SELECT Naam, Beschrijving, Soort, WC, Douche, Wastafel, Prijs  FROM kamers WHERE Naam = '". $selected . "'");
 
@@ -47,18 +53,37 @@ table, th, td {
 
                 }
 
-                echo "<form action='' method='post'><label> kies uw kamer hier </label><select name='kamers'>";
-                $GetRows = $con->query("SELECT Naam FROM kamers");
-                while ($row = mysqli_fetch_assoc($GetRows)){
-                    echo "<option value=''>" . implode($row) . "</option>";
-                    echo  "<br><br>\n";
-                }
-                echo '</select><input type="submit" name="kamers" value="submit"></form>';
                 
                 
             ?>
         </tbody>
-    </table>
+    </table> <br> <br>
+    
+    
+    <!-- reservatie -->
+
+    <form id="resForm" method="post" target="_self">
+      <label>Naam</label>
+      <input type="text" required name="name" placeholder="bas van der dijk" value=""><br> <br>
+
+      <label>Email</label>
+      <input type="email" required name="email" placeholder="bvandijk@gmail.com" value=""><br> <br>
+
+      <label>Telefoon</label>
+      <input type="tel" placeholder="06-12345678" required name="tel" value=""><br> <br>
+
+      <label>Aanmerkingen</label>
+      <input type="text" name="notes" value="Testing"><br> <br>
+
+      <?php
+     
+      $mindate = date("Y-m-d");
+      ?>
+      <label>Reservatie datum</label>
+      <input type="date" required name="date" min="<?=$mindate?>"><br> <br>
+
+      <input type="submit" value="Submit">
+    </form>
 
     
 </body>
