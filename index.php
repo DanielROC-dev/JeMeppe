@@ -73,14 +73,18 @@ table, th, td {
       <input type="tel" placeholder="06-12345678" required name="tel" value=""><br> <br>
 
       <label>Aanmerkingen</label>
-      <input type="text" name="notes" value="Testing"><br> <br>
+      <input type="text" name="notes" placeholder="zou er een wieg op de kamer geplaats kunnen worden" size="50" value=""><br> <br>
 
       <?php
      
       $mindate = date("Y-m-d");
       ?>
-      <label>Reservatie datum</label>
+      <label>Begin Reservatie datum</label> <br>
       <input type="date" required name="date" min="<?=$mindate?>"><br> <br>
+
+      <label>Eind reservatie datum</label> <br>
+      <input type="date" required name="date" min="<?=$mindate?>"><br> <br>
+
 
       <input type="submit" value="Submit">
     </form>
