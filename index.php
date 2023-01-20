@@ -5,6 +5,8 @@ table, th, td {
 }
 </style>
 <body>
+<button onclick="location.href='index2.php'" type="button">
+         test versie</button> <br><br>
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
@@ -87,8 +89,7 @@ table, th, td {
 
 
       <input type="submit" value="Submit">
-    </form>
-
-    
+      
+</form>
 </body>
 </html>
