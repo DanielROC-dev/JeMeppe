@@ -1,28 +1,4 @@
 <?php
-/*
-echo "wc is ";
-if (isset($_POST['wc'])) {
-    echo "checked!";
-} else echo "unchecked!";
-
-
-echo "<br> <br>";
-
-
-echo "shower is ";
-if (isset($_POST['shower'])) {
-    echo "checked!";
-} else echo "unchecked!";
-
-echo "<br> <br>";
-
-
-echo "sink is ";
-if (isset($_POST['sink'])) {
-    echo "checked!";
-} else echo "unchecked!";
-echo "<br> <br>"; */
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
     $roomname = $_POST['roomname'];
@@ -85,19 +61,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         
         // Insert room info
-        $sql = "INSERT INTO $room_db ($name_db, $price_db, $description_db) VALUES ('$roomname', '$price' , '$description')";
+        $sql = 
+        "INSERT INTO $room_db ($name_db, $price_db, $description_db) VALUES ('$roomname', '$price' , '$description')";
         mysqli_query($conn, $sql);
+
+       
+        $sql = 
+        "INSERT INTO $services_db ($quantity_db, $wc_db, $shower_db, $sink_db) VALUES ('$quantity', '$wc', '$shower', '$sink'); ";
+        mysqli_query($conn, $sql);
+
+
+       
 
         // Insert roomservices info
-        $sql = "INSERT INTO $roomservices_db ($roomservices_room_db) VALUES (LAST_INSERT_ID())";
-        mysqli_query($conn, $sql);
-
-        // Insert services info
-        $sql = "INSERT INTO $services_db ($quantity_db, $wc_db, $shower_db, $sink_db) VALUES ('$quantity', '$wc', '$shower', '$sink')";
-        mysqli_query($conn, $sql);
-
-        // Insert roomservices info
-        $sql = "INSERT INTO $roomservices_db ($roomservices_services_db) VALUES (LAST_INSERT_ID())";
+        $sql = "INSERT INTO $roomservices_db ($roomservices_room_db, $roomservices_services_db) 
+        SELECT (SELECT id FROM $room_db ORDER BY id DESC LIMIT 1),
+        (SELECT id FROM $services_db ORDER BY id DESC LIMIT 1); ";
+        
+        
         mysqli_query($conn, $sql);
 
        
@@ -109,7 +90,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     
-    
+    //FROM $room_db 
+    //    ORDER BY id DESC LIMIT 1
+    //    JOIN $services_db 
+    //    ON $room_db.id = $services_db.id;";
 
 
 ?>
