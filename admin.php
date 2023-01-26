@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "INSERT INTO $room_db ($name_db, $price_db, $description_db) VALUES ('$roomname', '$price' , '$description')";
         mysqli_query($conn, $sql);
 
-       
+       // Insert additional services info
         $sql = 
         "INSERT INTO $services_db ($quantity_db, $wc_db, $shower_db, $sink_db) VALUES ('$quantity', '$wc', '$shower', '$sink'); ";
         mysqli_query($conn, $sql);
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
        
 
-        // Insert roomservices info
+        // Insert ids that connects room and services info
         $sql = "INSERT INTO $roomservices_db ($roomservices_room_db, $roomservices_services_db) 
         SELECT (SELECT id FROM $room_db ORDER BY id DESC LIMIT 1),
         (SELECT id FROM $services_db ORDER BY id DESC LIMIT 1); ";
@@ -89,11 +89,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
     
-    
-    //FROM $room_db 
-    //    ORDER BY id DESC LIMIT 1
-    //    JOIN $services_db 
-    //    ON $room_db.id = $services_db.id;";
-
 
 ?>

@@ -48,8 +48,55 @@
             <input type="checkbox" id="sink" name="sink"/> <br> <br>
 
             <input type="submit" value="Add Room"> 
-        </form>
+        </form> <br> <br>
 
+        <!-- show and delete tables -->
+
+        <!-- dit hieronder werkt nie oeps print niks uit idk why  -->
+        <table>
+            <tr>
+                <th>kamer ID</th>
+                <th>Naam</th>
+                <th>Prijs</th>
+                <th>beschrijving</th>
+                <th>Voorzieningen ID</th>
+                <th>aantal personen</th>
+                <th>wc</th>
+                <th>douche</th>
+                <th>wastafel</th>
+                <th>Verwijder</th>
+            </tr>
+            <?php
+                $conn = mysqli_connect("localhost", "root", "", "mydb");
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                
+                $result = mysqli_query($conn, "SELECT kamer.id, kamer.naam, kamer.prijs, kamer.beschrijving,
+                voorzieningen.id, voorzieningen.aantalpersonen, voorzieningen.wc, voorzieningen.douche,
+                voorzieningen.wastafel FROM kamer JOIN voorzieningen ON kamer.id = voorzieningen.id");
+                echo mysqli_fetch_array($result);
+                while($row = mysqli_fetch_array($result)) {
+                    echo "<tr>";
+                    
+                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . $row['naam'] . "</td>";
+                    echo "<td>" . $row['prijs'] . "</td>";
+                    echo "<td>" . $row['beschrijving'] . "</td>";
+                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . $row['aantalpersonen'] . "</td>";
+                    echo "<td>" . $row['wc'] . "</td>";
+                    echo "<td>" . $row['douche'] . "</td>";
+                    echo "<td>" . $row['wastafel'] . "</td>";
+                    echo "<td><a href='delete.php?id=" . $row['id'] . "'>Delete</a></td>";
+                    echo "</tr>";
+                    
+                }
+                mysqli_close($conn);
+            ?> 
+
+
+        </table>
 
     </body>
 </html>
