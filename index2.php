@@ -17,9 +17,28 @@
             <input type="date" id="start_date" name="start_date"><br><br>
 
             <label for="end_date">Eind Datum:</label>
-            <input type="date" id="end_date" name="end_date"><br><br>
+            <input type="date" id="end_date" name="end_date"><br>
+            <p>selecteer kamer: </p>
+            <select name="kamer" id="kamer">
+            <?php
+            // Connect to the database
+            $conn = mysqli_connect("localhost", "root", "", "mydb");
+
+            // Select all rows from the "kamer" table
+            $result = mysqli_query($conn, "SELECT naam FROM kamer");
+
+            // Loop through each row in the "kamer" table
+            while ($row = mysqli_fetch_array($result)) {
+                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+            }
+
+            // Close the connection
+            mysqli_close($conn);
+            ?>
+            </select> <br> <br>
 
             <input type="submit" value="Make Reservation"> <br> <br> <br>
+
         </form>
 
         <!-- kamer toevoegen aan systeem -->
@@ -46,11 +65,12 @@
 
             <label for="sink">Wastafel Aanwezig:</label>
             <input type="checkbox" id="sink" name="sink"/> <br> <br>
+            
 
             <input type="submit" value="Add Room"> 
         </form> <br> <br>
 
-        <!-- show and delete tables -->
+        
 
         <!-- dit hieronder werkt nie oeps print niks uit idk why  -->
         <table>
@@ -59,12 +79,7 @@
                 <th>Naam</th>
                 <th>Prijs</th>
                 <th>beschrijving</th>
-                <th>Voorzieningen ID</th>
-                <th>aantal personen</th>
-                <th>wc</th>
-                <th>douche</th>
-                <th>wastafel</th>
-                <th>Verwijder</th>
+                <th>Delete</th>
             </tr>
             <?php
                 $conn = mysqli_connect("localhost", "root", "", "mydb");
@@ -72,26 +87,21 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
                 
-                $result = mysqli_query($conn, "SELECT kamer.id, kamer.naam, kamer.prijs, kamer.beschrijving,
-                voorzieningen.id, voorzieningen.aantalpersonen, voorzieningen.wc, voorzieningen.douche,
-                voorzieningen.wastafel FROM kamer JOIN voorzieningen ON kamer.id = voorzieningen.id");
-                echo mysqli_fetch_array($result);
-                while($row = mysqli_fetch_array($result)) {
+                // Select all rows from the "kamer" table
+                $result = mysqli_query($conn, "SELECT * FROM kamer");
+
+                // Loop through each row in the "kamer" table
+                while($row = mysqli_fetch_array($result)) {      
                     echo "<tr>";
-                    
                     echo "<td>" . $row['id'] . "</td>";
                     echo "<td>" . $row['naam'] . "</td>";
                     echo "<td>" . $row['prijs'] . "</td>";
                     echo "<td>" . $row['beschrijving'] . "</td>";
-                    echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['aantalpersonen'] . "</td>";
-                    echo "<td>" . $row['wc'] . "</td>";
-                    echo "<td>" . $row['douche'] . "</td>";
-                    echo "<td>" . $row['wastafel'] . "</td>";
                     echo "<td><a href='delete.php?id=" . $row['id'] . "'>Delete</a></td>";
                     echo "</tr>";
                     
                 }
+                //close connection
                 mysqli_close($conn);
             ?> 
 

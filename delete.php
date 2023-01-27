@@ -6,9 +6,10 @@
 
     $conn = mysqli_connect("$servername", "$username", "$password", "$dbname");
     $id = $_GET['id'];
-    mysqli_query($conn, "DELETE FROM kamer WHERE id=$id");
-    mysqli_query($conn, "DELETE FROM voorzieningen WHERE id=$id");
-    mysqli_query($conn, "DELETE FROM kamervoorz WHERE id=$id");
-    mysqli_close($conn);
-    header("location:index2.php");
+    // Delete the row with the specified id from the "kamer" table
+    $sql = "DELETE FROM kamer WHERE id=$id";
+    mysqli_query($conn, $sql);
+
+    // Redirect to the index page
+    header("Location:index2.php");
 ?>
