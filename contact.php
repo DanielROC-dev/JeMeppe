@@ -10,11 +10,10 @@
       <a href="rooms.php">Rooms</a>
       <a href="about.php">About</a>
       <a href="contact.php">Contact</a>
-      <a href="index2.php">test site</a>
     </nav>
     <!-- Add a header for the website -->
     <header>
-      <h1>Castle Jemeppe</h1>
+      <h1>Contact us</h1>
       
     </header>
     

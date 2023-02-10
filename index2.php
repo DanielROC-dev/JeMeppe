@@ -1,5 +1,13 @@
 <html>
+    <head>
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            }
+        </style>
+    </head>
     <body>  <!-- kamer reservatie inputs -->
+    <a href ='indexdesign.php'>design page</a> <br> <br> 
         <form action="reservation.php" method="post">
             <label for="name">Naam:</label>
             <input type="text" placeholder="bas van der dijk" id="name" name="name"><br><br>
@@ -108,5 +116,8 @@
 
         </table>
 
+
+    
     </body>
+    
 </html>
