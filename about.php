@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
+  <body class="about-page">
   <div class="container">
         <div class="navbar">
             <img src="kasteel-logo.png" class="logo">
@@ -22,14 +23,32 @@
     </div>
     <!-- Add a header for the website -->
     <header>
-      <h1>About us</h1>
+      
       
     </header>
     <article>
+    
     <div class=about-text>
-        <h2> Hotel Jemeppe lays in the green heart of the Veluwe. An oasis of tranquility prevails on the estate, the surrounding forests and heaths. The sheer beauty of pure nature replaces all your worries with the unforgettable taste of refreshment.</h2> <br>
-        <h2> If you prefer going on a trip, you have come to the right place too. At a walking distance of our hotel lays the nearly 800 year old city of London, about five kilometers away. London has a rich history and a vibrant center worth visiting.</h2> <br>
-        <h2> The extremely hospitable staff at Hotel Jemeppe will do their utmost to make your stay as pleasant as possible and we are confident that they will.</h2> <br>
+    <h1>About us</h1>
+        <h2> Welcome to Jemeppe, a luxurious and elegant hotel located in the heart of Almere.
+              We are a team of dedicated professionals committed to providing exceptional service and creating memorable experiences for our guests. <br><br>
+
+              Our hotel features several beautifully appointed guest rooms and suites, each equipped with modern amenities to ensure a comfortable and relaxing stay.
+              We also offer a range of facilities to enhance your experience with us.<br><br>
+
+              At Jemeppe, we take pride in our commitment to sustainability and environmental responsibility.
+              From our eco-friendly housekeeping practices to our use of renewable energy sources, we are dedicated to reducing our impact on the planet.<br><br>
+
+              Our on-site restaurant and bars offer a range of dining options, from casual bistro-style fare to gourmet cuisine.
+              Our chefs use the freshest ingredients to create delicious and innovative dishes that are sure to tantalize your taste buds.<br><br>
+
+              We are also proud to offer a range of meeting and event facilities, including a grand ballroom, several smaller meeting rooms, and an outdoor terrace, Whether you are planning a business conference, a wedding, or a special celebration, our team will work with you to create a memorable and successful event.<br><br>
+
+              At Jemeppe, we believe in providing a truly personal experience. Our staff are always on hand to assist with any request,
+              from making restaurant reservations to arranging local tours and activities.<br><br>
+
+              Thank you for choosing Jemeppe for your stay. We look forward to welcoming you and making your visit truly unforgettable</h2> 
+        
     </div>
     
     <br> <br>
