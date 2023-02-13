@@ -1,62 +1,59 @@
-<div class="container">
-        <div class="navbar">
-            <img src="kasteel-logo.png" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="rooms.php">Rooms</a></li>
-                    <li><a href="about.php">About</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                    <li><a href="index2.php">test site</a></li>
-                </ul>
-            </nav>
-            <img src="menu.png" class="menu-icon">
-        </div>
-    </div>
-<style>
-  nav {
-text-align: right;
-flex: 1;
-}
-.container{
-    width: 100%;
-    height: 100vh;
-    background-position: center;
-    background-color: gray;
-    background-size: cover;
-    padding-left: 8%;
-    padding-right: 8%;
-    box-sizing: border-box;
-}
-.navbar{
-    height: 12%;
-    display: flex;
-    align-items: center;
-    
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Room and Amenity</title>
+</head>
+<body>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydb";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-.logo{
-    width: 50px;
-    cursor: pointer;
-}
 
-.menu-icon{
-    width: 30px;
-    cursor: pointer;
-    margin-left: 40px;
-    color: red;
+    $id = 48;
+    $id2 = 35;
 
-}
-nav ul li {
-    list-style: none;
-    display: inline-block;
-    margin-left: 60px;
-    color: red;
-}
-nav ul li a{
-    text-decoration: none;
-    color: #fff;
-    font-size: 13px;
-    color: red;
-}
-</style>
+    $sql1 = "SELECT * FROM kamer WHERE id=" . $id;
+    $sql2 = "SELECT * FROM voorzieningen WHERE id=" . $id2;
+    $result1 = mysqli_query($conn, $sql1);
+    $result2 = mysqli_query($conn, $sql2);
+
+    if (mysqli_num_rows($result1) > 0 && mysqli_num_rows($result2) > 0) {
+        $row1 = mysqli_fetch_assoc($result1);
+        $row2 = mysqli_fetch_assoc($result2);
+
+        if (isset($_POST['submit'])) {
+            $kamernummer = $_POST['kamernummer'];
+            $type = $_POST['type'];
+            $naam = $_POST['naam'];
+            $beschrijving = $_POST['beschrijving'];
+
+            $sql1 = "UPDATE kamer SET kamernummer='$kamernummer', type='$type' WHERE id=" . $id;
+            $sql2 = "UPDATE voorzieningen SET naam='$naam', beschrijving='$beschrijving' WHERE id=" . $id2;
+
+            if (mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2)) {
+                echo "Record updated successfully";
+                header("Location: test.php");
+            } else {
+                echo "Error updating record: " . mysqli_error($conn);
+            }
+        }
+    }
+
+?>
+<form action="test.php?id=<?php echo $id; ?>&id2=<?php echo $id2; ?>" method="post">
+	Room Number: <input type="text" name="kamernummer" value="<?php echo $row1["kamernummer"]; ?>">
+	Room Type: <input type="text" name="type" value="<?php echo $row1["type"]; ?>">
+	Amenity Name: <input type="text" name="naam" value="<?php echo $row2["naam"]; ?>">
+	Amenity Description: <input type="text" name="beschrijving" value="<?php echo $row2["beschrijving"]; ?>">
+	<input type="submit" name="submit" value="Submit">
+</form>

@@ -14,7 +14,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="rooms.php">Rooms</a></li>
                     <li><a href="about.php">About</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="contact.php">Login</a></li>
                     <li><a href="index2.php">test site</a></li>
                 </ul>
             </nav>

@@ -14,7 +14,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="rooms.php">Rooms</a></li>
                     <li><a href="about.php">About</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="contact.php">Login</a></li>
                     <li><a href="index2.php">test site</a></li>
                 </ul>
             </nav>
@@ -23,7 +23,7 @@
     </div>
     <!-- Add a header for the website -->
   <header></header>
-    
+  
     <article>
     <div style="padding-left:16px">
     
@@ -35,12 +35,17 @@
         <div class="room-info">
           <div class="room-type">Standard Room</div>
           <div class="room-price">$100/night</div>
+          <img src="img/toilet.png"><input style="pointer-events:none "type="checkbox" checked><br>
+          <img src="img/sink.png"><input style="pointer-events:none "type="checkbox" checked><br>
+          <img src="img/shower.png"><input style="pointer-events:none "type="checkbox" checked><br>
+          <img src="img/user.png"><p1>x 2</p1><br><br>
           <button class="book-button">Book Now</button>
+          
         </div>
       </div>
       <!-- Add another card for another room -->
       <div class="room-card">
-        <div class="room-info">
+        <div class="room-info">a better room
           <div class="room-type">Deluxe Room</div>
           <div class="room-price">$150/night</div>
           <button class="book-button">Book Now</button>
@@ -49,15 +54,34 @@
     	
 
       <?php
-for ($x = 0; $x <= 10; $x++) {
-  echo '<div class="room-card">
-   <div class="room-info">
-    <div class="room-type">Deluxe Room</div>
-    <div class="room-price">$150/night</div>
-    <button class="book-button">Book Now</button>
+
+
+
+$conn = mysqli_connect("localhost", "root", "", "mydb");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Select all rows from the "kamer" table
+$result = mysqli_query($conn, "SELECT * FROM kamer");
+$voorzieningen = mysqli_query($conn, "SELECT * FROM kamer");
+// Loop through each row in the "kamer" table
+while($row = mysqli_fetch_array($result)) {      
+    echo '<div class="room-card">
+     <div class="room-info">
+     <div class="room-type">'. $row['naam'] . '</div>
+     <div class="room-price">$'. $row['prijs']  .'/night</div>                                              '/* this break the code idk why */ '
+     <img src="img/toilet.png"><input style="pointer-events:none "type="checkbox" ' /*. mysqli_query($conn, "SELECT wc FROM voorzieningen WHERE id = (SELECT voorzieningen_id FROM kamervoorz WHERE kamer_id = $row['id'])"); .*/ '><br>
+     <img src="img/sink.png"><input style="pointer-events:none "type="checkbox" checked><br>
+     <img src="img/shower.png"><input style="pointer-events:none "type="checkbox" checked><br>
+     <img src="img/user.png"><p1>x 2</p1><br><br>
+     <button class="book-button">Book Now</button>
   </div>
 </div>';
+
 }
+//close connection
+mysqli_close($conn);
 ?>
 
     </div>

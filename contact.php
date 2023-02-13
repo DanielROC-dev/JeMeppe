@@ -1,10 +1,43 @@
 <!DOCTYPE html>
+<?php 
+
+// Connect to the MySQL database
+$conn = mysqli_connect("localhost", "root", "", "mydb");
+
+// Check if the form has been submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Get the user ID and password from the form
+  $id = mysqli_real_escape_string($conn, $_POST["id"]);
+  $password = mysqli_real_escape_string($conn, $_POST["password"]);
+
+  // Check if the user ID and password are correct
+  $query = "SELECT * FROM personeel WHERE id = '$id' AND wachtwoord = '$password'";
+  $result = mysqli_query($conn, $query);
+  $user = mysqli_fetch_assoc($result);
+
+  // If the user ID and password are correct, log the user in and redirect to the admin page
+  if ($user) {
+    session_start();
+    $_SESSION["user_id"] = $user["id"];
+    header("Location: admin2.php");
+    exit;
+  } else {
+    // If the user ID and password are incorrect, print an error message
+    //echo "Incorrect ID or password. Please try again.";
+  }
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
+
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
   </head>
+  <body>
   <div class="container">
         <div class="navbar">
             <img src="kasteel-logo.png" class="logo">
@@ -13,24 +46,33 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="rooms.php">Rooms</a></li>
                     <li><a href="about.php">About</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="contact.php">Login</a></li>
                     <li><a href="index2.php">test site</a></li>
+                   
                 </ul>
             </nav>
             <img src="menu.png" class="menu-icon">
         </div>
     </div>
     <!-- Add a header for the website -->
-    <header>
-      <h1>Contact us</h1>
-      
+    <header> 
     </header>
-    <div class="contact-text">
-
-    </div>
-    <article>
-    <div style="padding-left:16px">
     
+    <article>
+
+    <br><br>
+      <div class="login-square">
+      <form action="contact.php" method="post">
+    <label>Employee Login Form</label> <br> <br> <br>
+    <label for="id">ID:</label><br>
+    <input type="text" id="id" name="id"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Submit"> <br>
+    <!-- If the user ID and password are incorrect, print an error message -->
+    <?php if(!isset($user) && $_SERVER["REQUEST_METHOD"] == "POST"){echo "Incorrect ID or password. Please try again.";} ?>
+  </form>
+    </div>
    
     </article>
     <footer>

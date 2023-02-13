@@ -1,5 +1,28 @@
+<style>
+    .loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if(isset($_POST['roomname']) && isset($_POST['price']) && isset($_POST['description']) && isset($_POST['quantity'])) {
     // Collect form data
     $roomname = $_POST['roomname'];
     $price = $_POST['price'];
@@ -81,13 +104,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         mysqli_query($conn, $sql);
 
-       
-        echo "Kamer succesvol toegevoegt!";
+        echo '<div class="loader"></div>';
+        echo "Room succesfully added!  <br>  you will be redirected shortly";
+        echo '<meta http-equiv="refresh" content="5;url=admin2.php" />';
     }
-
-   
 }
+if(isset($_POST['delete_room_id']))
+{
+    $conn = mysqli_connect("localhost", "root", "", "mydb");
 
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    $conn->query("SET FOREIGN_KEY_CHECKS=0");
+    $id = $_POST['delete_room_id'];
+    $delete_voorzieningen = "DELETE FROM voorzieningen WHERE id = (SELECT voorzieningen_id FROM kamervoorz WHERE kamer_id = $id)";
+    $delete_kamervoorz = "DELETE FROM kamervoorz WHERE kamer_id = $id";
+    $delete_kamer = "DELETE FROM kamer WHERE id = $id";
+    
+
+    if (mysqli_query($conn, $delete_voorzieningen) && mysqli_query($conn, $delete_kamer) && mysqli_query($conn, $delete_kamervoorz)) {
+        echo '<div class="loader"></div>';
+        echo "Room succesfully deleted!  <br>  you will be redirected shortly";
+        echo '<meta http-equiv="refresh" content="5;url=admin2.php" />';
+    } else {
+        echo mysqli_error($conn);
+    }
+    $conn->query("SET FOREIGN_KEY_CHECKS=1");
+
+    mysqli_close($conn);
+}
     
 
 ?>
