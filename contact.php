@@ -37,7 +37,7 @@ mysqli_close($conn);
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
   </head>
-  <body>
+  <body class="login-page">
   <div class="container">
         <div class="navbar">
             <img src="kasteel-logo.png" class="logo">

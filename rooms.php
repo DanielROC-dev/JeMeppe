@@ -57,30 +57,84 @@
 
 
 
-$conn = mysqli_connect("localhost", "root", "", "mydb");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
-// Select all rows from the "kamer" table
+		// Connect to the database
+    $conn = mysqli_connect("localhost", "root", "", "mydb");
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    
+    // Retrieve room descriptions and amenities from the database
+    $sql = "SELECT kamer.*, voorzieningen.* FROM kamer
+            INNER JOIN kamervoorz ON kamer.id = kamervoorz.kamer_id
+            INNER JOIN voorzieningen ON kamervoorz.voorzieningen_id = voorzieningen.id";
+    $result = mysqli_query($conn, $sql);
+    
+    // Check if any rooms were found
+    if (mysqli_num_rows($result) > 0) {
+      // Loop through each room and group its amenities
+      $current_room_id = null;
+      $amenities = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+          if ($row["id"] != $current_room_id) {
+              // New room found, print its description and amenities
+              if (!is_null($current_room_id)) {
+                  foreach ($amenities as $amenity) {
+                      echo "<p1>" . $amenity . "</p1>";
+                  }
+                  echo "<button class='book-button'>Book Now</button>";
+                  echo "</div></div>";
+              }
+              echo "<div class='room-card'><div class='room-info'><div class='room-type'>" . $row["naam"] . "</div>";
+              echo "<div class='room-price'>" . $row['prijs'] . "/night</div>";
+              $amenities = array();
+              $current_room_id = $row["id"];
+          }
+          $amenities[] = '<p1><label><img src="img/toilet.png"><input type="checkbox" ' . ($row["wc"] == 1 ? 'checked' : '') . ' onclick="return false"> WC</label></p1><br>';
+    $amenities[] = '<p1><label><img src="img/shower.png"><input type="checkbox" ' . ($row["douche"] == 1 ? 'checked' : '') . ' onclick="return false"> Douche</label></p1><br>';
+    $amenities[] = '<p1><label><img src="img/sink.png"><input type="checkbox" ' . ($row["wastafel"] == 1 ? 'checked' : '') . ' onclick="return false"> Wastafel</label></p1><br>';
+          $amenities[] = '<img src="img/user.png"><p1>x ' . $row["aantalPersonen"] . '</p1><br>';
+      }
+      // Print the amenities for the last room
+      foreach ($amenities as $amenity) {
+          echo "<p1>" . $amenity . "</p1>";
+      }
+      echo "<br><button class='book-button'>Book Now</button>";
+      echo "</div></div>";
+  } else {
+      echo "<p>No rooms found.</p>";
+  }
+    ?>
+
+
+
+
+
+
+
+
+<?php
+
+/* Select all rows from the "kamer" table
 $result = mysqli_query($conn, "SELECT * FROM kamer");
 $voorzieningen = mysqli_query($conn, "SELECT * FROM kamer");
 // Loop through each row in the "kamer" table
 while($row = mysqli_fetch_array($result)) {      
-    echo '<div class="room-card">
+     echo '<div class="room-card">
      <div class="room-info">
-     <div class="room-type">'. $row['naam'] . '</div>
-     <div class="room-price">$'. $row['prijs']  .'/night</div>                                              '/* this break the code idk why */ '
-     <img src="img/toilet.png"><input style="pointer-events:none "type="checkbox" ' /*. mysqli_query($conn, "SELECT wc FROM voorzieningen WHERE id = (SELECT voorzieningen_id FROM kamervoorz WHERE kamer_id = $row['id'])"); .*/ '><br>
-     <img src="img/sink.png"><input style="pointer-events:none "type="checkbox" checked><br>
-     <img src="img/shower.png"><input style="pointer-events:none "type="checkbox" checked><br>
+     <div class="room-type">'. $row["naam"] . '</div>
+     <div class="room-price">$'. $row["prijs"]  .'/night</div>                                       '/* this break the code idk why / '
+    
      <img src="img/user.png"><p1>x 2</p1><br><br>
-     <button class="book-button">Book Now</button>
-  </div>
-</div>';
+     <button class="book-button">Book Now</button></div></div>';*
 
 }
-//close connection
+//close connection*/
+
+
+
 mysqli_close($conn);
 ?>
 
