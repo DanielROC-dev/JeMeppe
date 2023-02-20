@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_query($conn, $sql);
 
        
-        echo "Reservation made successfully!";
+        echo "Reservation made successfully!"; ///test
         }
     }
 }
