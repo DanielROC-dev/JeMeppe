@@ -84,7 +84,8 @@
                   foreach ($amenities as $amenity) {
                       echo "<p1>" . $amenity . "</p1>";
                   }
-                  echo "<button class='book-button'>Book Now</button>";
+                
+                  echo "<form action='reserve_room.php'method='post'><input class='book-button' type='hidden' name='reserve_room' value='" . $current_room_id . "' /><input type='hidden' name='action' value='Book Now' /><button class='book-button'>Book Now</button></form>";
                   echo "</div></div>";
               }
               echo "<div class='room-card'><div class='room-info'><div class='room-type'>" . $row["naam"] . "</div>";
