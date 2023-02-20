@@ -11,7 +11,7 @@
             <img src="img/kasteel-logo.png" class="logo">
             <nav>
                 <ul>
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="rooms.php">Rooms</a></li>
                     <li><a href="about.php">About</a></li>
                     <li><a href="contact.php">Login</a></li>

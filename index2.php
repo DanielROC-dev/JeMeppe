@@ -7,7 +7,7 @@
         </style>
     </head>
     <body>  <!-- kamer reservatie inputs -->
-    <a href ='index.php'>main page</a> <br> <br> 
+    <a href ='index.html'>main page</a> <br> <br> 
         <form action="reservation.php" method="post">
             <label for="name">Naam:</label>
             <input type="text" placeholder="bas van der dijk" id="name" name="name"><br><br>

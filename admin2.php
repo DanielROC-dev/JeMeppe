@@ -8,7 +8,7 @@ $conn = mysqli_connect("localhost", "root", "", "mydb");
 // Check if the user is logged in
 if(!isset($_SESSION["user_id"])) {
   // Redirect the user to the index page if they are not logged in
-  header("Location: index.php");
+  header("Location: index.html");
   exit;
 }
 
@@ -31,7 +31,7 @@ mysqli_close($conn);
 echo '<form method="post"><button type="submit" name="logout">logout</button></form>';
 if(isset($_POST['logout'])){
     session_destroy();
-    header("location:index.php"); // change this to index.php when done editing
+    header("location:index.html"); // change this to index.html when done editing
     echo "logout triggered";
 }
 ?>
