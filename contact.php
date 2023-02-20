@@ -40,7 +40,7 @@ mysqli_close($conn);
   <body class="login-page">
   <div class="container">
         <div class="navbar">
-            <img src="kasteel-logo.png" class="logo">
+            <img src="img/kasteel-logo.png" class="logo">
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
@@ -51,7 +51,7 @@ mysqli_close($conn);
                    
                 </ul>
             </nav>
-            <img src="menu.png" class="menu-icon">
+            <img src="img/menu.png" class="menu-icon">
         </div>
     </div>
     <!-- Add a header for the website -->

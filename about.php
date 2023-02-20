@@ -4,11 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      h1{
+        font-size: 40px;
+        padding: 30px;
+      }
+    </style>
   </head>
   <body class="about-page">
   <div class="container">
         <div class="navbar">
-            <img src="kasteel-logo.png" class="logo">
+            <img src="img/kasteel-logo.png" class="logo">
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
@@ -18,7 +24,7 @@
                     <li><a href="index2.php">test site</a></li>
                 </ul>
             </nav>
-            <img src="menu.png" class="menu-icon">
+            <img src="img/menu.png" class="menu-icon">
         </div>
     </div>
     <!-- Add a header for the website -->

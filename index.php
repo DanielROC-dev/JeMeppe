@@ -4,11 +4,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .index_text {
+        font-size: 150%;
+        text-align: center;
+        padding-top: 8%;
+        padding-left: 20%;
+        padding-right: 20%;
+      }
+    </style>
     </head>
     <body class="home-page">
     <div class="container">
         <div class="navbar">
-            <img src="kasteel-logo.png" class="logo">
+            <img src="img/kasteel-logo.png" class="logo">
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
@@ -18,7 +27,7 @@
                     <li><a href="index2.php">test site</a></li>
                 </ul>
             </nav>
-            <img src="menu.png" class="menu-icon">
+            <img src="img/menu.png" class="menu-icon">
         </div>
     </div>
     <!-- Add a header for the website -->
@@ -26,7 +35,13 @@
     
     <article>
     <div style="padding-left:16px">
-    
+    <div class="index_text">
+      <span><h1>Spend the night in downtown Almere</h1></span>
+      <p1>Do you feel exhausted or uninspired? Do you feel like discovering new things? Whether you are looking for culture and history or want to relax, I have the place for you.</p1> <br> <br>
+      <p1>Then check out our rooms or read a little about us!</p1> <br> <br> <br>
+      <a href="rooms.php" class="button">Check out rooms!</a>
+      <a href="about.php" class="button">Read about us!</a>
+    </div>
    
     </article>
     <footer>

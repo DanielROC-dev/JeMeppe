@@ -8,7 +8,7 @@
   <body class="room-page">
   <div class="container">
         <div class="navbar">
-            <img src="kasteel-logo.png" class="logo">
+            <img src="img/kasteel-logo.png" class="logo">
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
@@ -18,7 +18,7 @@
                     <li><a href="index2.php">test site</a></li>
                 </ul>
             </nav>
-            <img src="menu.png" class="menu-icon">
+            <img src="img/menu.png" class="menu-icon">
         </div>
     </div>
     <!-- Add a header for the website -->
@@ -30,7 +30,7 @@
     </div>
     <!-- Add the main content area -->
     <div class="main-content">
-      <!-- Add a card for each room -->
+      <!-- Add a card for each room
       <div class="room-card">
         <div class="room-info">
           <div class="room-type">Standard Room</div>
@@ -43,14 +43,14 @@
           
         </div>
       </div>
-      <!-- Add another card for another room -->
+       Add another card for another room 
       <div class="room-card">
         <div class="room-info">a better room
           <div class="room-type">Deluxe Room</div>
           <div class="room-price">$150/night</div>
           <button class="book-button">Book Now</button>
         </div>
-      </div>
+      </div> -->
     	
 
       <?php
@@ -93,8 +93,8 @@
               $current_room_id = $row["id"];
           }
           $amenities[] = '<p1><label><img src="img/toilet.png"><input type="checkbox" ' . ($row["wc"] == 1 ? 'checked' : '') . ' onclick="return false"> WC</label></p1><br>';
-    $amenities[] = '<p1><label><img src="img/shower.png"><input type="checkbox" ' . ($row["douche"] == 1 ? 'checked' : '') . ' onclick="return false"> Douche</label></p1><br>';
-    $amenities[] = '<p1><label><img src="img/sink.png"><input type="checkbox" ' . ($row["wastafel"] == 1 ? 'checked' : '') . ' onclick="return false"> Wastafel</label></p1><br>';
+    $amenities[] = '<p1><label><img src="img/shower.png"><input type="checkbox" ' . ($row["douche"] == 1 ? 'checked' : '') . ' onclick="return false"> Shower</label></p1><br>';
+    $amenities[] = '<p1><label><img src="img/sink.png"><input type="checkbox" ' . ($row["wastafel"] == 1 ? 'checked' : '') . ' onclick="return false"> Sink</label></p1><br>';
           $amenities[] = '<img src="img/user.png"><p1>x ' . $row["aantalPersonen"] . '</p1><br>';
       }
       // Print the amenities for the last room

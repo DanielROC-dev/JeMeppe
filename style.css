@@ -11,7 +11,7 @@ article{ flex:1; }
 
 /* specific page information  */
 .home-page {
-  background: url('kasteel-almere2.jpeg') no-repeat center center fixed;
+  background: url('img/kasteel-almere2.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -19,7 +19,7 @@ article{ flex:1; }
 }
 
 .room-page {
-  background: url('kasteel-almere1.jpg') no-repeat center center fixed;
+  background: url('img/kasteel-almere1.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -27,7 +27,7 @@ article{ flex:1; }
 }
 
 .about-page {
-  background: url('kasteel-almere3.jpg') no-repeat center center fixed;
+  background: url('img/kasteel-almere3.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -62,7 +62,7 @@ article{ flex:1; }
 
 /* Room cards style */
 .room-card {
-  background-color: white;
+  background-color: rgb(190, 189, 189);
   width: 300px;
   height: 400px;
   margin: 20px;
@@ -144,6 +144,11 @@ nav ul li {
   margin-left: 60px;
   font-family: Delicious, sans-serif;  
 }
+
+nav ul li:hover {
+  text-decoration: underline white;
+}
+
 
 nav ul li a{
   text-decoration: none;
@@ -244,8 +249,8 @@ h3 {
 }
 
 /* fonts  */
-@font-face { font-family: Delicious; src: url('BLACC___.TTF'); } 
-@font-face { font-family: Delicious; font-weight: bold; src: url('BLACC___.TTF');}
+@font-face { font-family: Delicious; src: url('fonts/BLACC___.TTF'); } 
+@font-face { font-family: Delicious; font-weight: bold; src: url('fonts/BLACC___.TTF');}
 
 /* login  */
 .login-square {
@@ -259,4 +264,19 @@ h3 {
   padding-left: 12%;
   padding-right: 12%;
   
+}
+
+
+.button {
+  background-color: gray;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  opacity: 0.8;
+  border: 2px solid darkgray;
 }
