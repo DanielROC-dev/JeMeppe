@@ -134,6 +134,47 @@ if(isset($_POST['delete_room_id']))
 
     mysqli_close($conn);
 }
+
+
+if(isset($_POST['delete_reservation_id']))
+{
+    $conn = mysqli_connect("localhost", "root", "", "mydb");
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
     
+    $id = $_POST['delete_reservation_id'];
+    $delete_reservation = "DELETE FROM reservering WHERE id = $id";
+    
+    if (mysqli_query($conn, $delete_reservation)) {
+        echo '<div class="loader"></div>';
+        echo "Reservation succesfully deleted!  <br>  you will be redirected shortly";
+        echo '<meta http-equiv="refresh" content="5;url=admin2.php" />';
+    } else {
+        echo mysqli_error($conn);
+    }
+    mysqli_close($conn);
+}
+
+
+if(isset($_POST['delete_guest_id']))
+{
+    $conn = mysqli_connect("localhost", "root", "", "mydb");
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    
+    $id = $_POST['delete_guest_id'];
+    $delete_guestinfo = "DELETE FROM gast WHERE id = $id";
+    
+    if (mysqli_query($conn, $delete_guestinfo)) {
+        echo '<div class="loader"></div>';
+        echo "Guest info succesfully deleted!  <br>  you will be redirected shortly";
+        echo '<meta http-equiv="refresh" content="5;url=admin2.php" />';
+    } else {
+        echo mysqli_error($conn);
+    }
+    mysqli_close($conn);
+}
 
 ?>

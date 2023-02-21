@@ -65,7 +65,7 @@ if(isset($_POST['logout'])){
       <li class="list-item" data-info="item2-info">Manage reservations</li>
       <li class="list-item" data-info="item3-info">Manage employees</li>
       <li class="list-item" data-info="item4-info">Manage guests</li>
-      <li class="list-item" data-info="item5-info">Manage permissions</li>
+      <!--<li class="list-item" data-info="item5-info">Manage permissions</li>-->
     </ul>
     <!-- Insert information about list items-->
     <div id="item1-info" class="item-info">
@@ -143,6 +143,7 @@ if(isset($_POST['logout'])){
                 <th>end date</th>
                 <th>guest ID</th>
                 <th>room ID</th>
+                <th>delete</th>
             </tr>
             <?php
                 $conn = mysqli_connect("localhost", "root", "", "mydb");
@@ -161,6 +162,7 @@ if(isset($_POST['logout'])){
                     echo "<td>" . $row['eindDatum'] . "</td>";
                     echo "<td>" . $row['Gast_id'] . "</td>";
                     echo "<td>" . $row['Kamer_id'] . "</td>";
+                    echo "<td><form action='admin.php'method='post'><input type='hidden' name='delete_reservation_id' value='" . $row['id'] . "' /><input type='hidden' name='action' value='delete' /><input type='submit' value='Delete' /></form></td>";
                     echo "</tr>";
                     
                 }
@@ -216,7 +218,7 @@ if(isset($_POST['logout'])){
                 <th>gmail</th>
                 <th>phone number</th>
                 <th>notes</th>
-                
+                <th>delete</th>
             </tr>
             <?php
                 $conn = mysqli_connect("localhost", "root", "", "mydb");
@@ -235,6 +237,7 @@ if(isset($_POST['logout'])){
                     echo "<td>" . $row['email'] . "</td>";
                     echo "<td>" . $row['telefoon'] . "</td>";
                     echo "<td>" . $row['notes'] . "</td>";
+                    echo "<td><form action='admin.php'method='post'><input type='hidden' name='delete_guest_id' value='" . $row['id'] . "' /><input type='hidden' name='action' value='delete' /><input type='submit' value='Delete' /></form></td>";
                     echo "</tr>";
                     
                 }
